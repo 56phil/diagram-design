@@ -1,8 +1,11 @@
 <div align="center">
 
-# Diagram Design
-
-### Editorial diagrams your designer won't hate.
+<h1>
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="docs/hero/hero-dark.webp">
+    <img alt="Diagram Design. Editorial diagrams your designer won't hate." src="docs/hero/hero-light.webp">
+  </picture>
+</h1>
 
 **An agent skill that draws diagrams as one self-contained HTML + SVG file, in your brand.<br>44 diagram types. No shadows. No Mermaid slop.**
 
