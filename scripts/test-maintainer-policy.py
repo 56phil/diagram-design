@@ -315,6 +315,7 @@ def policy_failures(policy: dict, workflow: str) -> list[str]:
 def verifier_coverage_failures(commands: set[str], scripts: set[str]) -> list[str]:
     """Require every verifier and its regression test in the CI-backed policy."""
     failures: list[str] = []
+    commands = {normalize(command) for command in commands}
     for filename in sorted(
         s for s in scripts if s.startswith("verify-") and s.endswith(".py")
     ):
@@ -624,6 +625,8 @@ def self_test() -> list[str]:
     coverage_cases = (
         ("paired verifier and test", {"verify-waterfall.py", "test-verify-waterfall.py"},
          {"python3 scripts/verify-waterfall.py --all", "python3 scripts/test-verify-waterfall.py"}, None),
+        ("normalized verifier and test commands", {"verify-waterfall.py", "test-verify-waterfall.py"},
+         {"python   scripts/verify-waterfall.py   --all", "python scripts/test-verify-waterfall.py"}, None),
         ("unregistered verifier", {"verify-waterfall.py", "test-verify-waterfall.py"},
          {"python3 scripts/test-verify-waterfall.py"}, "verify-waterfall.py has no registered CI gate"),
         ("missing adversarial test", {"verify-waterfall.py"},
